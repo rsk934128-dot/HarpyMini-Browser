@@ -38,6 +38,7 @@ import { Web3WalletModal } from './components/Web3WalletModal';
 import { SettingsModal } from './components/SettingsModal';
 import { AuthModal } from './components/AuthModal';
 import { DesktopGuideModal } from './components/DesktopGuideModal';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -705,6 +706,9 @@ export default function App() {
         isOpen={isDesktopGuideOpen}
         onClose={() => setIsDesktopGuideOpen(false)}
       />
+
+      {/* Vercel Speed Insights */}
+      <SpeedInsights />
     </div>
   );
 }
