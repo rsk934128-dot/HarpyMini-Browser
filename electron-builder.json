@@ -1,0 +1,33 @@
+{
+  "appId": "com.harpymini.browser",
+  "productName": "HarpyMini Browser",
+  "copyright": "Copyright © 2026 HarpyMini Technologies",
+  "directories": {
+    "output": "dist-electron"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*",
+    "server.ts",
+    "package.json"
+  ],
+  "win": {
+    "target": ["nsis", "portable"],
+    "artifactName": "${productName}-Setup-${version}.${ext}"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "HarpyMini Browser"
+  },
+  "mac": {
+    "category": "public.app-category.productivity",
+    "target": ["dmg"]
+  },
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "category": "Network;WebBrowser"
+  }
+}

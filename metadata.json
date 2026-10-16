@@ -1,0 +1,9 @@
+{
+  "name": "HarpyMini Browser",
+  "description": "Fast, privacy-focused, and AI-powered web browser with smart tools, encrypted password manager, reader mode, and cloud sync.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

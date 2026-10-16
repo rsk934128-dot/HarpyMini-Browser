@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="50%" stop-color="#0b1329" />
+      <stop offset="100%" stop-color="#050811" />
+    </linearGradient>
+
+    <!-- Neon Cyan to Violet Gradient -->
+    <linearGradient id="neonCyanViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+
+    <!-- Wing Feather Gradient 1 -->
+    <linearGradient id="wingGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="50%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <!-- Wing Feather Gradient 2 -->
+    <linearGradient id="wingGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#22d3ee" />
+    </linearGradient>
+
+    <!-- Eye Glow Filter -->
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Border Glow -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#818cf8" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+
+  <!-- App Rounded Card Base -->
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="4" />
+
+  <!-- Cyber Circuit Lines in Background -->
+  <g stroke="#1e293b" stroke-width="2" opacity="0.4" fill="none">
+    <path d="M40 180 H140 L180 220 V320" />
+    <path d="M472 260 H380 L340 300 V400" />
+    <path d="M220 40 V100 L260 140" />
+    <circle cx="180" cy="220" r="4" fill="#06b6d4" />
+    <circle cx="340" cy="300" r="4" fill="#818cf8" />
+  </g>
+
+  <!-- Harpy Eagle Cyber Wings (Stylized Browser Tab Plumes) -->
+  <g filter="url(#neonGlow)">
+    <!-- Back Feather 1 -->
+    <path d="M125 150 C110 240 160 330 255 365 C200 340 170 290 165 240 C160 200 135 160 125 150 Z" fill="url(#wingGrad1)" />
+    <!-- Back Feather 2 -->
+    <path d="M145 210 C140 280 185 345 255 365 C215 345 195 305 190 270 C185 240 155 215 145 210 Z" fill="url(#wingGrad2)" opacity="0.95" />
+    <!-- Middle Wing Curve -->
+    <path d="M175 270 C180 320 220 360 270 375 C240 360 225 330 220 305 Z" fill="#38bdf8" />
+  </g>
+
+  <!-- Harpy Eagle Crest & Crown Feathers -->
+  <g filter="url(#neonGlow)">
+    <path d="M255 130 C270 100 290 85 320 80 C305 105 300 125 295 145 C320 120 345 110 380 110 C360 135 350 155 345 175 C370 160 400 160 425 170 C395 190 380 215 375 240 C370 225 350 200 320 190 C290 180 270 150 255 130 Z" fill="url(#neonCyanViolet)" />
+  </g>
+
+  <!-- Harpy Eagle Cyber Head Structure -->
+  <path d="M260 180 C300 175 350 195 375 240 C370 275 350 320 320 360 C300 385 275 410 260 420 C270 380 270 340 260 300 C250 260 245 220 260 180 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="3" />
+
+  <!-- Beak (Curved, Powerful Predator Beak) -->
+  <path d="M370 240 C410 250 435 280 430 320 C420 335 405 345 390 345 C380 345 375 330 370 310 C365 290 365 260 370 240 Z" fill="#38bdf8" stroke="#0284c7" stroke-width="2" />
+  <path d="M388 322 C405 322 415 310 420 295 C410 285 395 280 380 280" stroke="#082f49" stroke-width="2" fill="none" />
+
+  <!-- Cybernetic Eye (Camera Lens / Omni-Search Aperture) -->
+  <g filter="url(#neonGlow)">
+    <circle cx="340" cy="245" r="22" fill="#020617" stroke="#22d3ee" stroke-width="3" />
+    <circle cx="340" cy="245" r="14" fill="#0891b2" />
+    <circle cx="340" cy="245" r="7" fill="#ffffff" />
+    <circle cx="343" cy="242" r="3" fill="#ffffff" />
+  </g>
+
+  <!-- Neck Cyber Circuit Plates -->
+  <path d="M295 285 L325 315 M280 320 L310 350 M265 355 L290 380" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" opacity="0.8" />
+  <polygon points="305,270 320,260 330,275 315,285" fill="#38bdf8" opacity="0.3" stroke="#22d3ee" stroke-width="1.5" />
+</svg>

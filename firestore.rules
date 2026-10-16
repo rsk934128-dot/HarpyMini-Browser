@@ -1,0 +1,107 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // User profile document
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId)
+                    && isValidId(userId)
+                    && incoming().id == userId
+                    && incoming().email is string
+                    && incoming().email.size() <= 128;
+      allow update: if isOwner(userId)
+                    && incoming().id == existing().id;
+      allow delete: if isOwner(userId);
+
+      // User Bookmarks subcollection
+      match /bookmarks/{bookmarkId} {
+        allow get, list, delete: if isOwner(userId);
+        allow create: if isOwner(userId)
+                      && isValidId(bookmarkId)
+                      && incoming().userId == userId
+                      && incoming().title is string
+                      && incoming().title.size() <= 300
+                      && incoming().url is string
+                      && incoming().url.size() <= 2048;
+        allow update: if isOwner(userId)
+                      && incoming().userId == existing().userId
+                      && incoming().title is string
+                      && incoming().title.size() <= 300
+                      && incoming().url is string
+                      && incoming().url.size() <= 2048;
+      }
+
+      // Browsing History subcollection
+      match /history/{historyId} {
+        allow get, list, delete: if isOwner(userId);
+        allow create: if isOwner(userId)
+                      && isValidId(historyId)
+                      && incoming().userId == userId
+                      && incoming().url is string
+                      && incoming().url.size() <= 2048;
+        allow update: if isOwner(userId)
+                      && incoming().userId == existing().userId;
+      }
+
+      // Encrypted Passwords Vault subcollection
+      match /passwords/{passwordId} {
+        allow get, list, delete: if isOwner(userId);
+        allow create: if isOwner(userId)
+                      && isValidId(passwordId)
+                      && incoming().userId == userId
+                      && incoming().website is string
+                      && incoming().website.size() <= 256
+                      && incoming().encryptedData is string
+                      && incoming().encryptedData.size() <= 20000;
+        allow update: if isOwner(userId)
+                      && incoming().userId == existing().userId
+                      && incoming().website is string
+                      && incoming().website.size() <= 256
+                      && incoming().encryptedData is string
+                      && incoming().encryptedData.size() <= 20000;
+      }
+
+      // Offline Pages subcollection
+      match /offlinePages/{pageId} {
+        allow get, list, delete: if isOwner(userId);
+        allow create: if isOwner(userId)
+                      && isValidId(pageId)
+                      && incoming().userId == userId
+                      && incoming().title is string
+                      && incoming().title.size() <= 500
+                      && incoming().content is string
+                      && incoming().content.size() <= 1000000;
+        allow update: if isOwner(userId)
+                      && incoming().userId == existing().userId;
+      }
+    }
+  }
+}
